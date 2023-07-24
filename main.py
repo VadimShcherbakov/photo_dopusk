@@ -20,7 +20,6 @@ def get_size(start_path: str) -> str:
     for dirpath, dirnames, filenames in os.walk(start_path):
         for f in filenames:
             fp = os.path.join(dirpath, f)
-            # skip if it is symbolic link
             if not os.path.islink(fp):
                 total_size += os.path.getsize(fp)
     return total_size
@@ -38,7 +37,6 @@ def move_file(start_path: str, end_path: str) -> None:
             if not os.path.isdir(end_way):
                 os.mkdir(end_way)
             shutil.move(fp, end_way)
-    # delete_folder(start_path)# используется для удаления исходной папки
     print('Перенос файлов выполнен')
 
 
